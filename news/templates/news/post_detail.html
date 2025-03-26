@@ -23,7 +23,29 @@
       {% endif %}
       
       {{ object.content|safe }}
+<div class="container my-4">
+  <article class="content-section">
+    <!-- Post Title -->
+    <h1 class="article-title">{{ object.title }}</h1>
+    
+    <!-- Metadata: Author and Date -->
+    <div class="article-metadata mb-3">
+      <p>
+        <strong>{{ object.author }}</strong> - 
+        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+      </p>
     </div>
+    
+    <!-- Post Content in 3 Columns -->
+    <div class="article-content" style="column-count: 3; column-gap: 20px;">
+      {% if object.featured_image %}
+      <img src="{{ object.featured_image.url }}" alt="{{ object.title }}" class="img-fluid mb-3 d-block mx-auto" style="max-width: 300px; max-height: 300px; break-inside: avoid;">
+      {% endif %}
+      
+      {{ object.content|safe }}
+    </div>
+  </article>
+</div>
   </article>
 </div>
 
