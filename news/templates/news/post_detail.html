@@ -5,11 +5,14 @@
 {% block content %}
 <article class="container">
     <header class="article-header">
-        <h1 class="article-title">{{ object.title }}</h1>
         <div class="article-meta">
             <span class="author">{{ object.author.first_name }} {{ object.author.last_name }}</span>
             <span class="date">- {{ object.date_posted|date:"F d, Y" }}</span>
         </div>
+        <h1 class="article-title">{{ object.title }}</h1>
+        {% if object.subtitle %}
+        <h2 class="article-subtitle">{{ object.subtitle }}</h2>
+        {% endif %}
     </header>
 
     <div class="article-content">
@@ -26,26 +29,45 @@
 </article>
 
 <style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
     .article-header {
         margin-bottom: 3rem;
+        text-align: center;
     }
 
     .article-title {
         font-size: 2.5rem;
-        font-weight: 500;
-        margin-bottom: 1rem;
+        font-weight: 700;
+        margin: 1rem 0;
         line-height: 1.2;
+        color: var(--text-color);
+    }
+
+    .article-subtitle {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--text-color);
+        opacity: 0.8;
+        margin-bottom: 1rem;
     }
 
     .article-meta {
         font-size: 1.1rem;
         color: var(--text-color);
         opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     .article-content {
         font-size: 1.2rem;
         line-height: 1.8;
+        color: var(--text-color);
     }
 
     .featured-image {
@@ -56,7 +78,8 @@
     .featured-image img {
         max-width: 100%;
         height: auto;
-        filter: grayscale(100%);
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .article-text {
@@ -69,6 +92,7 @@
         line-height: 0.8;
         padding-right: 0.1em;
         margin-top: 0.1em;
+        font-family: "Georgia", serif;
     }
 
     .article-text p {
@@ -76,8 +100,16 @@
     }
 
     @media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+
         .article-title {
             font-size: 2rem;
+        }
+
+        .article-subtitle {
+            font-size: 1.2rem;
         }
 
         .article-content {
@@ -98,6 +130,10 @@
 
         .article-content {
             font-size: 12pt;
+        }
+
+        .container {
+            padding: 0;
         }
     }
 </style>
