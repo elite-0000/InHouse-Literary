@@ -1,0 +1,104 @@
+{% extends "shared/base.html" %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+<article class="container">
+    <header class="article-header">
+        <h1 class="article-title">{{ object.title }}</h1>
+        <div class="article-meta">
+            <span class="author">{{ object.author.first_name }} {{ object.author.last_name }}</span>
+            <span class="date">- {{ object.date_posted|date:"F d, Y" }}</span>
+        </div>
+    </header>
+
+    <div class="article-content">
+        {% if object.featured_image %}
+        <figure class="featured-image">
+            <img src="{{ object.featured_image.url }}" alt="{{ object.title }}">
+        </figure>
+        {% endif %}
+        
+        <div class="article-text">
+            {{ object.content|safe }}
+        </div>
+    </div>
+</article>
+
+<style>
+    .article-header {
+        margin-bottom: 3rem;
+    }
+
+    .article-title {
+        font-size: 2.5rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .article-meta {
+        font-size: 1.1rem;
+        color: var(--text-color);
+        opacity: 0.8;
+    }
+
+    .article-content {
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+
+    .featured-image {
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    .featured-image img {
+        max-width: 100%;
+        height: auto;
+        filter: grayscale(100%);
+    }
+
+    .article-text {
+        margin-top: 2rem;
+    }
+
+    .article-text p:first-of-type::first-letter {
+        font-size: 3.5em;
+        float: left;
+        line-height: 0.8;
+        padding-right: 0.1em;
+        margin-top: 0.1em;
+    }
+
+    .article-text p {
+        margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .article-title {
+            font-size: 2rem;
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+        }
+    }
+
+    /* Print styles */
+    @media print {
+        .dark-mode-toggle {
+            display: none;
+        }
+
+        body {
+            color: black;
+            background: white;
+        }
+
+        .article-content {
+            font-size: 12pt;
+        }
+    }
+</style>
+{% endblock %} 
