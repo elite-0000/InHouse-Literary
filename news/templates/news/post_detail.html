@@ -3,113 +3,116 @@
 {% block title %}{{ object.title }}{% endblock %}
 
 {% block content %}
-<article class="container">
-    <header class="article-header">
+<article class="article">
+    <div class="article-container">
+        <h1 class="article-title">{{ object.title }}</h1>
+        
         <div class="article-meta">
             <span class="author">{{ object.author.first_name }} {{ object.author.last_name }}</span>
             <span class="date">- {{ object.date_posted|date:"F d, Y" }}</span>
         </div>
-        <h1 class="article-title">{{ object.title }}</h1>
-        {% if object.subtitle %}
-        <h2 class="article-subtitle">{{ object.subtitle }}</h2>
-        {% endif %}
-    </header>
 
-    <div class="article-content">
         {% if object.featured_image %}
-        <figure class="featured-image">
+        <figure class="article-image">
             <img src="{{ object.featured_image.url }}" alt="{{ object.title }}">
         </figure>
         {% endif %}
         
-        <div class="article-text">
+        <div class="article-content">
             {{ object.content|safe }}
         </div>
     </div>
+
+    <footer class="article-footer">
+        <div class="article-container">
+            <p>© {{ object.date_posted|date:"Y" }} InHouse Journal. All rights reserved.</p>
+        </div>
+    </footer>
 </article>
 
 <style>
-    .container {
-        max-width: 800px;
+    .article {
+        max-width: 100%;
         margin: 0 auto;
-        padding: 2rem;
+        padding: 2rem 0;
+        background: var(--main-bg-color);
     }
 
-    .article-header {
-        margin-bottom: 3rem;
-        text-align: center;
+    .article-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2rem;
     }
 
     .article-title {
+        font-family: 'EB Garamond', serif;
         font-size: 2.5rem;
-        font-weight: 700;
-        margin: 1rem 0;
+        font-weight: 600;
         line-height: 1.2;
+        margin: 2rem 0 1rem;
         color: var(--text-color);
-    }
-
-    .article-subtitle {
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: var(--text-color);
-        opacity: 0.8;
-        margin-bottom: 1rem;
     }
 
     .article-meta {
-        font-size: 1.1rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
         color: var(--text-color);
         opacity: 0.8;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        margin-bottom: 2rem;
     }
 
-    .article-content {
-        font-size: 1.2rem;
-        line-height: 1.8;
-        color: var(--text-color);
-    }
-
-    .featured-image {
+    .article-image {
         margin: 2rem 0;
         text-align: center;
     }
 
-    .featured-image img {
+    .article-image img {
         max-width: 100%;
         height: auto;
         border-radius: 4px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .article-text {
-        margin-top: 2rem;
+    .article-content {
+        font-family: 'EB Garamond', serif;
+        font-size: 1.25rem;
+        line-height: 1.8;
+        color: var(--text-color);
     }
 
-    .article-text p:first-of-type::first-letter {
+    .article-content p {
+        margin-bottom: 1.5rem;
+    }
+
+    .article-content p:first-of-type::first-letter {
         font-size: 3.5em;
         float: left;
         line-height: 0.8;
         padding-right: 0.1em;
         margin-top: 0.1em;
-        font-family: "Georgia", serif;
     }
 
-    .article-text p {
-        margin-bottom: 1.5rem;
+    .article-footer {
+        margin-top: 4rem;
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        color: var(--text-color);
+        opacity: 0.8;
     }
 
     @media (max-width: 768px) {
-        .container {
-            padding: 1rem;
+        .article {
+            padding: 1rem 0;
+        }
+
+        .article-container {
+            padding: 0 1rem;
         }
 
         .article-title {
             font-size: 2rem;
-        }
-
-        .article-subtitle {
-            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
         }
 
         .article-content {
@@ -119,21 +122,21 @@
 
     /* Print styles */
     @media print {
-        .dark-mode-toggle {
-            display: none;
+        .article {
+            padding: 0;
         }
 
-        body {
-            color: black;
-            background: white;
+        .article-container {
+            max-width: none;
+            padding: 0;
         }
 
         .article-content {
             font-size: 12pt;
         }
 
-        .container {
-            padding: 0;
+        .article-footer {
+            display: none;
         }
     }
 </style>
