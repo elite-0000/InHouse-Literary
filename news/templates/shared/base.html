@@ -61,7 +61,7 @@
         
         main {
             margin-top: var(--header-height);
-            min-height: calc(100vh - var(--header-height));
+            /* min-height: calc(100vh - var(--header-height)); */
         }
 
         .dark-mode-toggle {
@@ -102,6 +102,13 @@
                 padding: 0 1rem;
             }
         }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
     </style>
 </head>
 <body>
@@ -121,6 +128,10 @@
         {% block content %}
         {% endblock %}
     </main>
+
+    <footer>
+        <p>© 2025 InHouse Journal. All rights reserved.</p>
+    </footer>
 
     <script>
         const toggle = document.querySelector('.dark-mode-toggle');
