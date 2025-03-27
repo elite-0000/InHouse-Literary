@@ -40,13 +40,13 @@
         }
         
         .navbar-container {
-            max-width: 1200px;
             margin: 0 auto;
             height: 100%;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding: 0 2rem;
+            justify-content: center;
+            /* padding: 0 2rem; */
+            width: 100%;
         }
         
         .navbar-brand {
@@ -71,9 +71,9 @@
             background: var(--border-color);
             border-radius: 12px;
             cursor: pointer;
-            position: relative;
+            position: absolute;
+            right: 2rem;
             transition: background-color 0.3s;
-            margin-left: auto;
         }
 
         .dark-mode-toggle::after {
@@ -99,11 +99,11 @@
             transform: translateX(20px);
         }
 
-        @media (max-width: 768px) {
+        /* @media (max-width: 768px) {
             .navbar-container {
                 padding: 0 1rem;
             }
-        }
+        } */
 
         footer {
             border-top: 1px solid var(--border-color);
@@ -115,8 +115,8 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="navbar-container">
-            <a class="navbar-brand" href="/">
+        <div class="navbar-container container">
+            <a class="navbar-brand" href="/post/">
                 <img src="/media/post_images/icon150_fill.png" alt="InHouse Journal Logo" width="24" height="24">
                 InHouse Journal
             </a>
